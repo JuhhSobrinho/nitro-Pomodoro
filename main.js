@@ -37,13 +37,20 @@ function formatarTempo(segundos) {
   return `${horas.toString().padStart(2, '0')}:${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')}`;
 }
 
+
+
 // Função para atualizar o cronômetro
 let pontoDeFuga = 1;
 function atualizarCronometro() {
   tempo--;
   cronometroElement.textContent = formatarTempo(tempo);
 
-  if (tempo === 0 && pontoDeFuga % 2 === 0) {
+    if (pontoDeFuga === 4) {
+
+    pontoDeFuga = 0;
+
+    atualizarCronometro();
+  } else if (tempo === 0 && pontoDeFuga % 2 === 0 && pontoDeFuga < 3) {
     let text = "Pomodoro";
 
 
@@ -73,11 +80,8 @@ function atualizarCronometro() {
 
 
     tempo = 6;
-    pontoDeFuga = 1;
+    pontoDeFuga ++;
 
-    if (tempo === 0) {
-      tempo = timeInicial;
-    }
 
     atualizarCronometro();
   }
