@@ -22,7 +22,7 @@ botaoTime.forEach(bTime => {
 
 
   bTime.addEventListener('click', () => {
-    let test = bTime.value * 60;
+    let test = bTime.value * 1;
     tempo = test;
     timeInicial = test;
     cronometroElement.textContent = formatarTempo(tempo);
@@ -97,7 +97,7 @@ function atualizarCronometro() {
     let text = `Pausa <br> Grande`;
     let msgText = "Pausa Grande";
 
-    card.style.background = "red";
+    card.style.background = "#f48c06";
     titulo.innerHTML = text;
 
 
@@ -158,10 +158,20 @@ pararButton.addEventListener('click', () => {
 
 function notification(titulo) {
   turbo.play();
+  alert("inicio de noti");
+  turbina.style.animation = "tremer 0.5s ease infinite";
+  giro.style.animation = "girarInfinitamente 0.7s linear infinite"
+
+  setTimeout(() => {
+    turbina.style.transition = "2s";
+    turbina.style.animation = "tremer 4s ease infinite";
+    giro.style.animation = "girarInfinitamente 2s linear infinite"
+  }, 1800);
   if ("Notification" in window) {
     // Solicita permissão para exibir notificações
     Notification.requestPermission().then(function (permission) {
       if (permission === "granted") {
+        alert("dentro de noti");
         // Cria e exibe a notificação
         var notification = new Notification("Vrum Vrum 🍅", {
           body:
@@ -171,20 +181,15 @@ function notification(titulo) {
           icon: "./public/assets/turbina.png", // URL do ícone da notificação (opcional)
         });
 
+        alert("embaixo de noti");
+
         // Adiciona um evento de clique à notificação (opcional)
         notification.onclick = function () {
           // Código a ser executado ao clicar na notificação
           start();
 
         };
-        turbina.style.animation = "tremer 0.5s ease infinite";
-        giro.style.animation = "girarInfinitamente 0.7s linear infinite"
 
-        setTimeout(() => {
-          turbina.style.transition = "2s";
-          turbina.style.animation = "tremer 4s ease infinite";
-          giro.style.animation = "girarInfinitamente 2s linear infinite"
-      }, 1800);
       }
     });
   }
