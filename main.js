@@ -173,12 +173,11 @@ function alertNotif(titulo) {
         // Cria e exibe a notificação
         var notification = new Notification("Vrum Vrum 🍅", {
           body:
-            `Tempo de  começou
+            `Tempo de ${titulo} começou
             
-👉 Clique para Inicialo`, // URL do ícone da notificação (opcional)
+👉 Clique para Inicialo`,
+          icon: "./public/assets/turbina.png", // URL do ícone da notificação (opcional)
         });
-
-        alert("embaixo de noti");
 
         // Adiciona um evento de clique à notificação (opcional)
         notification.onclick = function () {
