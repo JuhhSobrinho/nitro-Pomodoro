@@ -15,7 +15,7 @@ const giro = document.getElementById('giro');
 Notification.requestPermission();
 
 let tempo = 1500;
-let timeInicial = 0
+let timeInicial = 1500;
 
 
 botaoTime.forEach(bTime => {
@@ -167,30 +167,36 @@ function notification(titulo) {
     turbina.style.animation = "tremer 4s ease infinite";
     giro.style.animation = "girarInfinitamente 2s linear infinite"
   }, 1800);
-  if ("Notification" in window) {
-    // Solicita permissão para exibir notificações
-    Notification.requestPermission().then(function (permission) {
-      if (permission === "granted") {
-        alert("dentro de noti");
-        // Cria e exibe a notificação
-        var notification = new Notification("Vrum Vrum 🍅", {
-          body:
-            `Tempo de ${titulo} começou
-            
-👉 Clique para Inicialo`,
-          icon: "./public/assets/turbina.png", // URL do ícone da notificação (opcional)
-        });
 
-        alert("embaixo de noti");
+  try {
+    alert("tentando criar notificação");
+    if ("Notification" in window) {
+      // Solicita permissão para exibir notificações
+      Notification.requestPermission().then(function (permission) {
+        if (permission === "granted") {
+          alert("dentro de noti");
+          // Tente criar a notificação
+          var notification = new Notification("Vrum Vrum 🍅", {
+            body:
+              `Tempo de ${titulo} começou\n👉 Clique para Iniciar`,
+            icon: "./public/assets/turbina.png", // URL do ícone da notificação (opcional)
+          });
 
-        // Adiciona um evento de clique à notificação (opcional)
-        notification.onclick = function () {
-          // Código a ser executado ao clicar na notificação
-          start();
+          alert("embaixo de noti");
 
-        };
-
-      }
-    });
+          // Adiciona um evento de clique à notificação (opcional)
+          notification.onclick = function () {
+            // Código a ser executado ao clicar na notificação
+            start();
+          };
+        } else {
+          alert("Permissão negada para notificações");
+        }
+      });
+    } else {
+      alert("Navegador não suporta notificações");
+    }
+  } catch (error) {
+    alert("Erro ao criar notificação: " + error.message);
   }
 }
