@@ -158,7 +158,6 @@ pararButton.addEventListener('click', () => {
 
 function alertNotif(titulo) {
   turbo.play();
-  alert("inicio de noti");
   turbina.style.animation = "tremer 0.5s ease infinite";
   giro.style.animation = "girarInfinitamente 0.7s linear infinite"
 
@@ -171,14 +170,12 @@ function alertNotif(titulo) {
     // Solicita permissão para exibir notificações
     Notification.requestPermission().then(function (permission) {
       if (permission === "granted") {
-        alert("dentro de noti");
         // Cria e exibe a notificação
         var notification = new Notification("Vrum Vrum 🍅", {
           body:
-            `Tempo de ${titulo} começou
+            `Tempo de  começou
             
-👉 Clique para Inicialo`,
-          icon: "./public/assets/turbina.png", // URL do ícone da notificação (opcional)
+👉 Clique para Inicialo`, // URL do ícone da notificação (opcional)
         });
 
         alert("embaixo de noti");
