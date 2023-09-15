@@ -171,14 +171,13 @@ function alertNotif(titulo) {
     Notification.requestPermission().then(function (permission) {
       if (permission === "granted") {
         // Cria e exibe a notificação
-        var notification = new Notification({
-          opt: {
-              body: "Criando nova notificação",
-              icon: "./public/assets/turbina.png"
-          },
-          title: "Olá mundo!",
-          link: "https://www.google.com.br/"
-      });
+        var notification = new Notification("Vrum Vrum 🍅", {
+          body:
+            `Tempo de ${titulo} começou
+            
+👉 Clique para Inicialo`,
+          icon: "./public/assets/turbina.png", // URL do ícone da notificação (opcional)
+        });
 
         // Adiciona um evento de clique à notificação (opcional)
         notification.onclick = function () {
