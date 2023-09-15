@@ -11,10 +11,6 @@ const card = document.getElementById('card-pomo');
 const turbo = new Audio('./public/assets/turbo.mp3');
 const turbina = document.getElementById('giroTurbo');
 const giro = document.getElementById('giro');
-const notification = new Notification("Vrum Vrum 🍅", {
-  body:"Tempo de ${titulo} começou 👉 Clique para Inicialo",
-  icon: "./public/assets/turbina.png",
-});
 
 Notification.requestPermission();
 
@@ -175,7 +171,7 @@ function alertNotif(titulo) {
     Notification.requestPermission().then(function (permission) {
       if (permission === "granted") {
         // Cria e exibe a notificação
-        notification.play();
+        var notification = new Notification("Vrum Vrum");
 
         // Adiciona um evento de clique à notificação (opcional)
         notification.onclick = function () {
