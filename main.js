@@ -22,7 +22,7 @@ botaoTime.forEach(bTime => {
 
 
   bTime.addEventListener('click', () => {
-    let test = bTime.value * 1;
+    let test = bTime.value * 60;
     tempo = test;
     timeInicial = test;
     cronometroElement.textContent = formatarTempo(tempo);
