@@ -1,3 +1,4 @@
+import { bolinhasDivs } from "./bolinhas.js";
 
 // Elementos HTML
 const cronometroElement = document.getElementById('cronometro');
@@ -22,7 +23,7 @@ botaoTime.forEach(bTime => {
 
 
   bTime.addEventListener('click', () => {
-    let test = bTime.value * 60;
+    let test = bTime.value * 1;
     tempo = test;
     timeInicial = test;
     cronometroElement.textContent = formatarTempo(tempo);
@@ -54,13 +55,14 @@ function atualizarCronometro() {
   // ///////////////////////////////////////////// LOOP OU VOLTANDO PARA O INICIO TANTO FAZ
   if (pontoDeFuga === 8) {
     pontoDeFuga = 0;
+    bolinhasDivs(pontoDeFuga);
     atualizarCronometro();
   }
 
   // ///////////////////////////////////////////// TEMPO DE TRABALHO
   else if (tempo === 0 && pontoDeFuga % 2 === 0 && pontoDeFuga < 7) {
     let text = "Pomodoro";
-
+    bolinhasDivs(pontoDeFuga);
 
     card.style.background = "#535bf2";
     titulo.innerHTML = text;
@@ -78,6 +80,7 @@ function atualizarCronometro() {
   // ////////////////////////////////////////////   PAUSA NORMAL
   else if (tempo === 0 && pontoDeFuga % 2 != 0 && pontoDeFuga < 7) {
     let text = "Pausa";
+    bolinhasDivs(pontoDeFuga);
 
     card.style.background = "red";
     titulo.innerHTML = text;
@@ -96,6 +99,7 @@ function atualizarCronometro() {
   else if (tempo === 0 && pontoDeFuga === 7) {
     let text = `Pausa <br> Grande`;
     let msgText = "Pausa Grande";
+    bolinhasDivs(pontoDeFuga);
 
     card.style.background = "#9e2a2b";
     titulo.innerHTML = text;
@@ -146,8 +150,11 @@ pausarButton.addEventListener('click', () => {
 
 // Event listener para o botão Parar
 pararButton.addEventListener('click', () => {
+  bolinhasDivs(0);
+  pontoDeFuga = 0;
+  tempo = 1;
+  atualizarCronometro();
   clearInterval(intervalo);
-  tempo = timeInicial;
   cronometroElement.textContent = formatarTempo(tempo);
   iniciarButton.disabled = false;
   pausarButton.disabled = true;
